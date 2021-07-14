@@ -8,12 +8,15 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
 import Card from "../Card/Card";
 
 export default function Hero() {
+  const bg = useColorModeValue("rgb(255,255,255,0.95)", "gray.800");
+
   return (
     <Box
       w="full"
@@ -25,7 +28,7 @@ export default function Hero() {
       <Flex align="center" pos="relative" justify="center" boxSize="full">
         <Stack textAlign="center" alignItems="center" spacing={6}>
           <Box
-            backgroundColor="rgb(255,255,255,0.95)"
+            bg={bg}
             d="flex"
             alignItems="center"
             p={6}
@@ -33,12 +36,7 @@ export default function Hero() {
             maxW="85vw"
           >
             <Image src="/unistack.png" height={112} width={112} />
-            <Heading
-              fontSize={["2xl", , "3xl"]}
-              fontWeight="semibold"
-              color="brand.900"
-              textTransform="uppercase"
-            >
+            <Heading fontWeight="semibold" textTransform="uppercase">
               <Text mr={4}>Unistack Homes</Text>
             </Heading>
           </Box>

@@ -95,12 +95,10 @@ export default function Header(props) {
       <React.Fragment>
         <SimpleGrid
           columns={{ base: 1, md: 3, lg: 5 }}
-          pos="relative"
           gap={{ base: 6, sm: 8 }}
           px={5}
           py={6}
           p={{ sm: 8 }}
-          w="100vw"
         >
           <Section
             title="Analytics"
@@ -332,11 +330,12 @@ export default function Header(props) {
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent
-                    w="full"
-                    mw="100vw"
                     _focus={{ boxShadow: "md" }}
+                    left={0}
+                    w="100vw"
+                    maxW="1200px"
                   >
-                    <Features mw="100vw" />
+                    <Features />
                   </PopoverContent>
                 </Popover>
                 <Button

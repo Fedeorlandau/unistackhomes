@@ -1,6 +1,10 @@
 import React from "react";
 import { Box, Flex, Image, Badge, useColorModeValue } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
+
+import { motion } from "framer-motion";
+const MotionFlex = motion(Flex);
+
 const Card = () => {
   const property = {
     imageUrl: "https://bit.ly/2Z4KKcF",
@@ -14,10 +18,18 @@ const Card = () => {
   };
 
   return (
-    <Flex p={50} w="full" alignItems="center" justifyContent="center">
+    <MotionFlex
+      p={50}
+      w="full"
+      alignItems="center"
+      justifyContent="center"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      position="relative"
+    >
       <Box
         bg={useColorModeValue("white", "gray.800")}
-        maxW="sm"
+        maxW="xs"
         rounded="lg"
         shadow="lg"
       >
@@ -76,7 +88,7 @@ const Card = () => {
           </Box>
         </Box>
       </Box>
-    </Flex>
+    </MotionFlex>
   );
 };
 

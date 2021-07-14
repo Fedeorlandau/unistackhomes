@@ -20,8 +20,8 @@ const Home = () => {
       <main>
         <Header />
         <Hero />
-        <Container maxW="container.xl" mt={-48}>
-          <SimpleGrid columns={[1, 1, 1, 2, 3]}>
+        <Container maxW="container.xl" mt={[0, -48]}>
+          <SimpleGrid columns={[1, 1, 2, 3, 3]}>
             <Box>
               <Card />
             </Box>

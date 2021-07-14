@@ -29,11 +29,11 @@ const Card = () => {
 
         <Box p="6">
           <Box d="flex" alignItems="baseline">
-            <Badge rounded="full" px="2" colorScheme="teal">
+            <Badge rounded="full" px="2" color="brand.700">
               New
             </Badge>
             <Box
-              color="gray.500"
+              color="brand.700"
               fontWeight="semibold"
               letterSpacing="wide"
               fontSize="xs"
@@ -67,7 +67,7 @@ const Card = () => {
               .map((_, i) => (
                 <StarIcon
                   key={i}
-                  color={i < property.rating ? "teal.500" : "gray.300"}
+                  color={i < property.rating ? "brand.800" : "gray.300"}
                 />
               ))}
             <Box as="span" ml="2" color="gray.600" fontSize="sm">

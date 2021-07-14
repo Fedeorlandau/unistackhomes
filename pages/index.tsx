@@ -5,6 +5,8 @@ import Hero from "../components/Hero/Hero";
 import { Box, SimpleGrid } from "@chakra-ui/layout";
 import Card from "../components/Card/Card";
 import { Container } from "@chakra-ui/react";
+import Footer from "../components/Footer/Footer";
+import Testimonials from "../components/Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -18,9 +20,23 @@ const Home = () => {
       <main>
         <Header />
         <Hero />
+        <Container maxW="container.xl" mt="-190px">
+          <SimpleGrid columns={[1, 1, 1, 2, 3]}>
+            <Box>
+              <Card />
+            </Box>
+            <Box w="100%">
+              <Card />
+            </Box>
+            <Box w="100%">
+              <Card />
+            </Box>
+          </SimpleGrid>
+        </Container>
+        <Testimonials />
       </main>
 
-      <footer></footer>
+      <Footer></Footer>
     </div>
   );
 };

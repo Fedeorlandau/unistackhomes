@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import Image from "next/image";
 import Card from "../Card/Card";
 
 export default function Hero() {
@@ -26,26 +27,22 @@ export default function Hero() {
           <Heading
             fontSize={["2xl", , "3xl"]}
             fontWeight="semibold"
-            color="brand.800"
+            color="brand.900"
             textTransform="uppercase"
           >
-            UniStack Homes
+            <Box
+              backgroundColor="rgb(255,255,255,0.95)"
+              d="flex"
+              alignItems="center"
+              p={6}
+              borderRadius={8}
+            >
+              <Image src="/unistack.png" height={112} width={112} />
+              <Text mr={4}>Unistack Homes</Text>
+            </Box>
           </Heading>
         </Stack>
       </Flex>
-      <Container maxW="container.xl" position="relative" top={-48}>
-        <SimpleGrid columns={[1, 1, 1, 2, 3]}>
-          <Box>
-            <Card />
-          </Box>
-          <Box w="100%">
-            <Card />
-          </Box>
-          <Box w="100%">
-            <Card />
-          </Box>
-        </SimpleGrid>
-      </Container>
     </Box>
   );
 }

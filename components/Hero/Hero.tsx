@@ -1,20 +1,15 @@
 import {
   Box,
-  Button,
-  chakra,
-  Container,
   Flex,
   Heading,
-  SimpleGrid,
   Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import Image from "next/image";
-import Card from "../Card/Card";
+import { Logo } from "../Logo/Logo";
 
-export default function Hero() {
+export const Hero = () => {
   const bg = useColorModeValue("rgb(255,255,255,0.95)", "gray.800");
 
   return (
@@ -35,7 +30,7 @@ export default function Hero() {
             borderRadius={8}
             maxW="85vw"
           >
-            <Image src="/unistack.png" height={112} width={112} />
+            <Logo height={112} width={112} />
             <Heading fontWeight="semibold" textTransform="uppercase">
               <Text mr={4}>Unistack Homes</Text>
             </Heading>
@@ -44,4 +39,4 @@ export default function Hero() {
       </Flex>
     </Box>
   );
-}
+};

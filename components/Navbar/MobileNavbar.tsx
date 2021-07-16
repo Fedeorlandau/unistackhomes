@@ -9,6 +9,7 @@ interface MobileNavbarProps {
   onClose: () => void;
   bg: string;
 }
+
 export default function MobileNavbar({ isOpen, onClose, bg }: MobileNavbarProps) {
   return (
     <VStack

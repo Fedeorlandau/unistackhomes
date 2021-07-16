@@ -1,32 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
+
 import {
-  chakra,
+  Button,
+  Flex,
   HStack,
+  IconButton,
   Link,
   Popover,
-  PopoverTrigger,
   PopoverContent,
-  Flex,
-  IconButton,
+  PopoverTrigger,
+  Spacer,
+  chakra,
+  useColorMode,
   useColorModeValue,
   useDisclosure,
-  Button,
-  useColorMode,
-  Spacer,
-} from "@chakra-ui/react";
-import { useViewportScroll } from "framer-motion";
-import { IoIosArrowDown } from "react-icons/io";
-import { AiOutlineMenu } from "react-icons/ai";
-import { FaMoon, FaSun } from "react-icons/fa";
-import { Logo } from "../Logo/Logo";
-import { Features } from "./Features";
-import { MobileNavbar } from "./MobileNavbar";
+} from '@chakra-ui/react';
+import { useViewportScroll } from 'framer-motion';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import { IoIosArrowDown } from 'react-icons/io';
 
-export const Navbar = () => {
+import Logo from '../Logo/Logo';
+import Features from './Features';
+import MobileNavbar from './MobileNavbar';
+
+export default function Navbar() {
   const { toggleColorMode: toggleMode } = useColorMode();
-  const text = useColorModeValue("dark", "light");
+  const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
-  const bg = useColorModeValue("white", "gray.800");
+  const bg = useColorModeValue('white', 'gray.800');
   const ref = useRef<HTMLHeadingElement>(null);
   const [y, setY] = React.useState(0);
   const { height = 0 } = ref.current
@@ -34,18 +36,16 @@ export const Navbar = () => {
     : {};
 
   const { scrollY } = useViewportScroll();
-  const cl = useColorModeValue("gray.800", "white");
+  const cl = useColorModeValue('gray.800', 'white');
   const { onOpen, isOpen, onClose } = useDisclosure();
 
-  useEffect(() => {
-    return scrollY.onChange(() => setY(scrollY.get()));
-  }, [scrollY]);
+  useEffect(() => scrollY.onChange(() => setY(scrollY.get())), [scrollY]);
 
   return (
-    <React.Fragment>
+    <>
       <chakra.header
         ref={ref}
-        shadow={y > height ? "sm" : undefined}
+        shadow={y > height ? 'sm' : undefined}
         transition="box-shadow 0.2s"
         bg={bg}
         w="full"
@@ -67,7 +67,7 @@ export const Navbar = () => {
               </Link>
             </Flex>
             <Flex>
-              <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+              <HStack spacing="5" display={{ base: 'none', md: 'flex' }}>
                 <Popover trigger="hover">
                   <PopoverTrigger>
                     <Button
@@ -77,14 +77,14 @@ export const Navbar = () => {
                       alignItems="center"
                       fontSize="md"
                       _hover={{ color: cl }}
-                      _focus={{ boxShadow: "none" }}
+                      _focus={{ boxShadow: 'none' }}
                       rightIcon={<IoIosArrowDown />}
                     >
                       Rent
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent
-                    _focus={{ boxShadow: "md" }}
+                    _focus={{ boxShadow: 'md' }}
                     left={0}
                     w="100vw"
                     maxW="1200px"
@@ -99,7 +99,7 @@ export const Navbar = () => {
                   alignItems="center"
                   fontSize="md"
                   _hover={{ color: cl }}
-                  _focus={{ boxShadow: "none" }}
+                  _focus={{ boxShadow: 'none' }}
                 >
                   Buy
                 </Button>
@@ -110,7 +110,7 @@ export const Navbar = () => {
                   alignItems="center"
                   fontSize="md"
                   _hover={{ color: cl }}
-                  _focus={{ boxShadow: "none" }}
+                  _focus={{ boxShadow: 'none' }}
                 >
                   Build
                 </Button>
@@ -124,15 +124,15 @@ export const Navbar = () => {
                 aria-label={`Switch to ${text} mode`}
                 variant="ghost"
                 color="current"
-                ml={{ base: "0", md: "3" }}
+                ml={{ base: '0', md: '3' }}
                 onClick={toggleMode}
                 icon={<SwitchIcon />}
               />
               <IconButton
-                display={{ base: "flex", md: "none" }}
+                display={{ base: 'flex', md: 'none' }}
                 aria-label="Open menu"
                 fontSize="20px"
-                color={useColorModeValue("gray.800", "inherit")}
+                color={useColorModeValue('gray.800', 'inherit')}
                 variant="ghost"
                 icon={<AiOutlineMenu />}
                 onClick={onOpen}
@@ -142,6 +142,6 @@ export const Navbar = () => {
           <MobileNavbar onClose={onClose} isOpen={isOpen} bg={bg} />
         </chakra.div>
       </chakra.header>
-    </React.Fragment>
+    </>
   );
-};
+}

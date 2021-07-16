@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Box,
   Flex,
@@ -5,17 +7,17 @@ import {
   Stack,
   Text,
   useColorModeValue,
-} from "@chakra-ui/react";
-import React from "react";
-import { Logo } from "../Logo/Logo";
+} from '@chakra-ui/react';
 
-export const Hero = () => {
-  const bg = useColorModeValue("rgb(255,255,255,0.95)", "gray.800");
+import Logo from '../Logo/Logo';
+
+export default function Hero() {
+  const bg = useColorModeValue('rgb(255,255,255,0.95)', 'gray.800');
 
   return (
     <Box
       w="full"
-      h={[96, "container.sm"]}
+      h={[96, 'container.sm']}
       backgroundImage="url(https://bellahomes.dk/wp-content/uploads/2020/07/OrganistensHus.jpg)"
       bgPos="center"
       bgSize="cover"
@@ -39,4 +41,4 @@ export const Hero = () => {
       </Flex>
     </Box>
   );
-};
+}

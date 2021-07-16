@@ -1,5 +1,8 @@
-import React from "react";
-import { useColorModeValue, Link, chakra, Box } from "@chakra-ui/react";
+import React from 'react';
+
+import {
+  Box, Link, chakra, useColorModeValue,
+} from '@chakra-ui/react';
 
 interface SectionProps {
   icon: React.SVGProps<SVGPathElement>;
@@ -7,11 +10,11 @@ interface SectionProps {
   children: React.ReactNode;
 }
 
-export const Section = ({ icon, title, children }: SectionProps) => {
-  const ic = useColorModeValue("brand.600", "brand.50");
-  const hbg = useColorModeValue("gray.50", "brand.400");
-  const tcl = useColorModeValue("gray.900", "gray.50");
-  const dcl = useColorModeValue("gray.500", "gray.50");
+export default function Section({ icon, title, children }: SectionProps) {
+  const ic = useColorModeValue('brand.600', 'brand.50');
+  const hbg = useColorModeValue('gray.50', 'brand.400');
+  const tcl = useColorModeValue('gray.900', 'gray.50');
+  const dcl = useColorModeValue('gray.500', 'gray.50');
   return (
     <Link
       m={-3}
@@ -20,6 +23,7 @@ export const Section = ({ icon, title, children }: SectionProps) => {
       alignItems="start"
       rounded="lg"
       _hover={{ bg: hbg }}
+      href="#"
     >
       <chakra.svg
         flexShrink={0}
@@ -44,4 +48,4 @@ export const Section = ({ icon, title, children }: SectionProps) => {
       </Box>
     </Link>
   );
-};
+}

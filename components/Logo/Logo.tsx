@@ -1,8 +1,11 @@
-import React from "react";
-import Image, { ImageProps } from "next/image";
+import React from 'react';
 
-export const Logo = (props: ImageProps) => <Image alt="Logo" {...props} />;
+import Image, { ImageProps } from 'next/image';
+
+const Logo = (props: ImageProps) => <Image alt="Logo" {...props} />;
 
 Logo.defaultProps = {
-  src: "/unistack.png",
+  src: '/unistack.png',
 };
+
+export default Logo;

@@ -1,18 +1,21 @@
-import React from "react";
-import { Box, Flex, Image, Badge, useColorModeValue } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+import React from 'react';
 
-import { motion } from "framer-motion";
+import { StarIcon } from '@chakra-ui/icons';
+import {
+  Badge, Box, Flex, Image, useColorModeValue,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+
 const MotionFlex = motion(Flex);
 
 const Card = () => {
   const property = {
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    imageAlt: "Rear view of modern home with pool",
+    imageUrl: 'https://bit.ly/2Z4KKcF',
+    imageAlt: 'Rear view of modern home with pool',
     beds: 3,
     baths: 2,
-    title: "Modern home in city center in the heart of historic Los Angeles",
-    formattedPrice: "$1,900.00",
+    title: 'Modern home in city center in the heart of historic Los Angeles',
+    formattedPrice: '$1,900.00',
     reviewCount: 34,
     rating: 4,
   };
@@ -28,7 +31,7 @@ const Card = () => {
       position="relative"
     >
       <Box
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue('white', 'gray.800')}
         maxW="xs"
         rounded="lg"
         shadow="lg"
@@ -52,7 +55,12 @@ const Card = () => {
               textTransform="uppercase"
               ml="2"
             >
-              {property.beds} beds &bull; {property.baths} baths
+              {property.beds}
+              {' '}
+              beds &bull;
+              {property.baths}
+              {' '}
+              baths
             </Box>
           </Box>
 
@@ -75,15 +83,17 @@ const Card = () => {
 
           <Box d="flex" mt="2" alignItems="center">
             {Array(5)
-              .fill("")
+              .fill('')
               .map((_, i) => (
                 <StarIcon
-                  key={i}
-                  color={i < property.rating ? "brand.800" : "gray.300"}
+                  key={property.title + property.rating}
+                  color={i < property.rating ? 'brand.800' : 'gray.300'}
                 />
               ))}
             <Box as="span" ml="2" color="gray.600" fontSize="sm">
-              {property.reviewCount} reviews
+              {property.reviewCount}
+              {' '}
+              reviews
             </Box>
           </Box>
         </Box>

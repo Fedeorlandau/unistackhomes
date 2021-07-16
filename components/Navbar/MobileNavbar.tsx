@@ -1,21 +1,22 @@
-import React from "react";
-import { VStack, CloseButton, Button } from "@chakra-ui/react";
-import { AiFillHome, AiOutlineInbox } from "react-icons/ai";
-import { BsFillCameraVideoFill } from "react-icons/bs";
+import React from 'react';
+
+import { Button, CloseButton, VStack } from '@chakra-ui/react';
+import { AiFillHome, AiOutlineInbox } from 'react-icons/ai';
+import { BsFillCameraVideoFill } from 'react-icons/bs';
 
 interface MobileNavbarProps {
   isOpen: boolean;
   onClose: () => void;
   bg: string;
 }
-export const MobileNavbar = ({ isOpen, onClose, bg }: MobileNavbarProps) => {
+export default function MobileNavbar({ isOpen, onClose, bg }: MobileNavbarProps) {
   return (
     <VStack
       pos="absolute"
       top={0}
       left={0}
       right={0}
-      display={isOpen ? "flex" : "none"}
+      display={isOpen ? 'flex' : 'none'}
       flexDirection="column"
       p={2}
       pb={4}
@@ -47,4 +48,4 @@ export const MobileNavbar = ({ isOpen, onClose, bg }: MobileNavbarProps) => {
       </Button>
     </VStack>
   );
-};
+}

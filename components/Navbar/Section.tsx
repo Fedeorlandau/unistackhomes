@@ -9,6 +9,7 @@ interface SectionProps {
   title: string;
   children: React.ReactNode;
 }
+
 export default function Section({ icon, title, children }: SectionProps) {
   const ic = useColorModeValue('brand.600', 'brand.50');
   const hbg = useColorModeValue('gray.50', 'brand.400');

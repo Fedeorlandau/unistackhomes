@@ -16,6 +16,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
+import NextLink from 'next/link';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -59,29 +60,63 @@ export default function Navbar() {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Flex align="flex-start">
-              <Link href="/">
-                <HStack>
-                  <Logo height={64} width={64} />
-                </HStack>
-              </Link>
+            <Flex align="flex-start" mr={4}>
+              <NextLink href="/" passHref>
+                <Link>
+                  <HStack>
+                    <Logo height={64} width={64} />
+                  </HStack>
+                </Link>
+              </NextLink>
             </Flex>
             <Flex>
               <HStack spacing="5" display={{ base: 'none', md: 'flex' }}>
+                <NextLink href="/rent" passHref>
+                  <Link
+                    bg={bg}
+                    as={Button}
+                    color="gray.500"
+                    display="inline-flex"
+                    alignItems="center"
+                    fontSize="md"
+                    _hover={{ color: cl }}
+                    _focus={{ boxShadow: 'none', color: cl }}
+                  >
+                    Rent
+                  </Link>
+                </NextLink>
+                <NextLink href="/buy" passHref>
+                  <Link
+                    bg={bg}
+                    as={Button}
+                    color="gray.500"
+                    display="inline-flex"
+                    alignItems="center"
+                    fontSize="md"
+                    _hover={{ color: cl }}
+                    _focus={{ boxShadow: 'none', color: cl }}
+                  >
+                    Buy
+                  </Link>
+                </NextLink>
                 <Popover trigger="hover">
                   <PopoverTrigger>
-                    <Button
+
+                    <Link
+                      as={Button}
                       bg={bg}
                       color="gray.500"
                       display="inline-flex"
                       alignItems="center"
                       fontSize="md"
                       _hover={{ color: cl }}
-                      _focus={{ boxShadow: 'none' }}
+                      _focus={{ boxShadow: 'none', color: cl }}
                       rightIcon={<IoIosArrowDown />}
                     >
-                      Rent
-                    </Button>
+
+                      Build
+                    </Link>
+
                   </PopoverTrigger>
                   <PopoverContent
                     _focus={{ boxShadow: 'md' }}
@@ -92,28 +127,7 @@ export default function Navbar() {
                     <Features />
                   </PopoverContent>
                 </Popover>
-                <Button
-                  bg={bg}
-                  color="gray.500"
-                  display="inline-flex"
-                  alignItems="center"
-                  fontSize="md"
-                  _hover={{ color: cl }}
-                  _focus={{ boxShadow: 'none' }}
-                >
-                  Buy
-                </Button>
-                <Button
-                  bg={bg}
-                  color="gray.500"
-                  display="inline-flex"
-                  alignItems="center"
-                  fontSize="md"
-                  _hover={{ color: cl }}
-                  _focus={{ boxShadow: 'none' }}
-                >
-                  Build
-                </Button>
+
               </HStack>
             </Flex>
             <Spacer />

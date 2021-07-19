@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 import LandingPage, { LandingPageProps } from '../components/LandingPage/LandingPage';
-import { getEntryByUid, getPageBySlug } from '../lib/api';
+import { getPageBySlug } from '../lib/api';
 
 export default LandingPage;
 
@@ -14,13 +14,10 @@ export const getStaticProps: GetStaticProps<LandingPageProps> = async (context) 
 
   const page = await getPageBySlug(context.preview || false, slug);
 
-  const components = await Promise.all(page?.components?.map((component) => getEntryByUid(component.uid, component._content_type_uid)) ?? []);
-
   return {
     props: {
       slug,
       page,
-      components,
     },
   };
 };

@@ -1,27 +1,26 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-import Home, { HomeProps } from '../components/Home/Home';
-import { getEntriesByContentType, getPageBySlug } from '../lib/api';
-import { TalkFields } from '../lib/contentstack';
+import LandingPage, { LandingPageProps } from '../components/LandingPage/LandingPage';
+import { getEntryByUid, getPageBySlug } from '../lib/api';
 
-export default Home;
+export default LandingPage;
 
-export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
+export const getStaticProps: GetStaticProps<LandingPageProps> = async (context) => {
   let slug = context.params?.slug ? `/${(context.params.slug as string[]).join('/')}` : '/';
 
   if (slug === '/index') {
     slug = '/';
   }
 
-  const page = getPageBySlug(context.preview || false, slug);
+  const page = await getPageBySlug(context.preview || false, slug);
 
-  const talks = getEntriesByContentType<TalkFields>(context.preview || false, 'talk');
+  const components = await Promise.all(page?.components?.map((component) => getEntryByUid(component.uid, component._content_type_uid)) ?? []);
 
   return {
     props: {
       slug,
-      page: await page,
-      talks: (await talks) ?? [],
+      page,
+      components,
     },
   };
 };

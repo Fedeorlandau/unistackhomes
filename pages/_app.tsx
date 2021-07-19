@@ -5,9 +5,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import Footer from '../components/Footer/Footer';
-import Hero from '../components/Hero/Hero';
 import Navbar from '../components/Navbar/Navbar';
-import Testimonials from '../components/Testimonials/Testimonials';
 
 const colors = {
   brand: {
@@ -30,10 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <main>
         <Navbar />
-        <Hero />
+
         <Component {...pageProps} />
 
-        <Testimonials />
       </main>
 
       <Footer />

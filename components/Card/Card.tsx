@@ -8,6 +8,15 @@ import { motion } from 'framer-motion';
 
 const MotionFlex = motion(Flex);
 
+export interface CardProps {
+  title: string;
+  beds: number;
+  baths: number;
+  price: string;
+  reviewCount: number;
+  rating: number;
+}
+
 const Card = () => {
   const property = {
     imageUrl: 'https://bit.ly/2Z4KKcF',

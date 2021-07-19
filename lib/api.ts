@@ -35,6 +35,8 @@ export const getEntriesByContentType = async <T extends StandardEntryFields>(
 ): Promise<Entry<T>[]> => {
   const query = getClient(preview).ContentType(type).Query().includeCount()
     .includeContentType()
+    .includeReference()
+    .includeEmbeddedItems()
     .toJSON();
   const result = await query.find();
 
@@ -48,6 +50,14 @@ export const getEntriesByContentType = async <T extends StandardEntryFields>(
   });
 
   return entries as Entry<T>[];
+};
+
+export const getEntryByUid = async (uid: string, type: string) => {
+  const query = getClient(true).ContentType(type).Entry(uid).includeContentType()
+    .toJSON();
+  const result = await query.fetch();
+  result._content_type_uid = result.content_type.uid;
+  return result;
 };
 
 export const getPageBySlug = async (preview: boolean, slug: string)

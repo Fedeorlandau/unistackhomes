@@ -11,7 +11,11 @@ import {
 
 import Logo from '../Logo/Logo';
 
-export default function Hero() {
+interface BannerProps {
+  title: string;
+}
+
+export default function Banner({ title }: BannerProps) {
   const bg = useColorModeValue('rgb(255,255,255,0.95)', 'gray.800');
 
   return (
@@ -34,7 +38,7 @@ export default function Hero() {
           >
             <Logo height={112} width={112} />
             <Heading fontWeight="semibold" textTransform="uppercase">
-              <Text mr={4}>Unistack Homes</Text>
+              <Text mr={4}>{title}</Text>
             </Heading>
           </Box>
         </Stack>

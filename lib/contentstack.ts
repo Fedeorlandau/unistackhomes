@@ -64,15 +64,14 @@ export interface HeroFields extends StandardEntryFields {
 
 export type Hero = Entry<HeroFields>;
 
+export type ComponentsProps = { _content_type_uid: string; uid: string; [key: string]: unknown; }[]
+| undefined;
 export interface PageFields extends StandardEntryFields, StandardPageEntryFields {
   /** Components */
-  components?:
-  | ((CallToAction | Hero | PersonalizedHero | RegistrationForm | TalksList | WhyAttend) &
-  { _content_type_uid: string }[])
-  | undefined;
+  components?: ComponentsProps
 }
 
-export type Page = Entry<PageFields>;
+export type PageProps = Entry<PageFields>;
 
 export interface RegistrationFormFields extends StandardEntryFields {
   /** ButtonText */

@@ -7,12 +7,12 @@ import ListingGrid from '../ListingGrid/ListingGrid';
 
 const componentMapping: ComponentMapping = {
   banner: Banner,
-  listing_grid: ListingGrid,
+  ref_listings_grid: ListingGrid,
 };
 
 export interface LandingPageProps {
   page?: PageFields;
-  components?: ComponentsProps;
+  components?: ComponentsProps[];
   slug: string;
 }
 

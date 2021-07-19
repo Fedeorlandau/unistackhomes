@@ -17,7 +17,9 @@ export interface CardProps {
   rating: number;
 }
 
-const Card = () => {
+const Card = ({
+  title, beds, baths, price, reviewCount, rating,
+}: CardProps) => {
   const property = {
     imageUrl: 'https://bit.ly/2Z4KKcF',
     imageAlt: 'Rear view of modern home with pool',
@@ -64,10 +66,10 @@ const Card = () => {
               textTransform="uppercase"
               ml="2"
             >
-              {property.beds}
+              {beds}
               {' '}
               beds &bull;
-              {property.baths}
+              {baths}
               {' '}
               baths
             </Box>
@@ -80,11 +82,11 @@ const Card = () => {
             lineHeight="tight"
             isTruncated
           >
-            {property.title}
+            {title}
           </Box>
 
           <Box>
-            {property.formattedPrice}
+            {price}
             <Box as="span" color="gray.600" fontSize="sm">
               / wk
             </Box>
@@ -95,12 +97,12 @@ const Card = () => {
               .fill('')
               .map((_, i) => (
                 <StarIcon
-                  key={property.title + property.rating}
-                  color={i < property.rating ? 'brand.800' : 'gray.300'}
+                  key={title + rating}
+                  color={i < rating ? 'brand.800' : 'gray.300'}
                 />
               ))}
             <Box as="span" ml="2" color="gray.600" fontSize="sm">
-              {property.reviewCount}
+              {reviewCount}
               {' '}
               reviews
             </Box>

@@ -56,8 +56,21 @@ export const getEntryByUid = async (uid: string, type: string) => {
   const query = getClient(true).ContentType(type).Entry(uid).includeContentType()
     .toJSON();
   const result = await query.fetch();
-  result._content_type_uid = result.content_type.uid;
-  return result;
+
+  const references: string[] = [];
+  Object.entries(result).forEach((prop) => {
+    if (prop[0].includes('ref_')) {
+      references.push(prop[0]);
+    }
+  });
+
+  const fullQuery = getClient(true).ContentType(type).Entry(uid).includeContentType()
+    .includeReference(references)
+    .toJSON();
+
+  const fullResult = await fullQuery.fetch();
+  fullResult._content_type_uid = result.content_type.uid;
+  return fullResult;
 };
 
 export const getPageBySlug = async (preview: boolean, slug: string)

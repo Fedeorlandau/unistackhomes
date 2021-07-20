@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image, { ImageProps } from 'next/image';
+import { Image, ImageProps } from '@chakra-ui/react';
 
 const Logo = (props: ImageProps) => <Image alt="Logo" {...props} />;
 

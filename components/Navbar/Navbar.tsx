@@ -64,7 +64,7 @@ export default function Navbar() {
               <NextLink href="/" passHref>
                 <Link>
                   <HStack>
-                    <Logo height={64} width={64} />
+                    <Logo height={16} width={16} />
                   </HStack>
                 </Link>
               </NextLink>

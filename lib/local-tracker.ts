@@ -1,4 +1,6 @@
+// @ts-expect-error types unavailable
 import googleAnalyticsPlugin from '@analytics/google-analytics';
+// @ts-expect-error types unavailable
 import segmentPlugin from '@analytics/segment';
 import { DeliveryAPIResult } from '@uniformdev/optimize-common';
 import { addAnalyticsPlugin } from '@uniformdev/optimize-tracker-analytics';

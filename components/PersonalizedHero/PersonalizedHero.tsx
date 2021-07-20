@@ -9,7 +9,6 @@ import Hero from '../Hero/Hero';
 const PersonalizedHero: React.FC<Entry<PersonalizedHeroFields>> = ({ unfrm_opt_p13n_list } : PersonalizedHeroFields) => {
   if (unfrm_opt_p13n_list) {
     const variations = contentstackOptimizeListReader(unfrm_opt_p13n_list);
-    console.log({ variations });
     return (
       <Personalize
         variations={variations}

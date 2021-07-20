@@ -38,7 +38,7 @@ if (publicRuntimeConfig?.segmentTrackingId) {
   );
 }
 
-const analytics = Analytics({
+export const analytics = Analytics({
   app: 'Uniform Optimize Next.js Example',
   debug: true,
   plugins,

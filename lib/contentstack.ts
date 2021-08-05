@@ -60,6 +60,9 @@ export interface HeroFields extends StandardEntryFields {
 
   /** Button Link Slug */
   button_link_slug?: string | undefined;
+
+  /** Is registered */
+  is_registered?: boolean;
 }
 
 export type Hero = Entry<HeroFields>;

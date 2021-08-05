@@ -63,7 +63,7 @@ const Hero: React.FC<Entry<HeroFields>> = ({
           >
             {title}
           </chakra.h1>
-          <chakra.form w="full" mb={6}>
+          <chakra.div w="full" mb={6}>
             <VisuallyHidden>Your Email</VisuallyHidden>
             <Box display={{ base: 'block', lg: 'none' }}>
               <Input
@@ -79,9 +79,10 @@ const Hero: React.FC<Entry<HeroFields>> = ({
                 color="brand.700"
                 variant="solid"
                 size="lg"
-                type="submit"
+                onClick={() => console.log('click')}
               >
                 {button_text}
+                {' '}
               </Button>
             </Box>
             <InputGroup size="lg" w="full" display={{ base: 'none', lg: 'flex' }}>
@@ -99,12 +100,14 @@ const Hero: React.FC<Entry<HeroFields>> = ({
                   size="lg"
                   type="submit"
                   roundedLeft={0}
+                  onClick={() => console.log('click')}
                 >
                   {button_text}
+                  {' '}
                 </Button>
               </InputRightElement>
             </InputGroup>
-          </chakra.form>
+          </chakra.div>
           <chakra.p
             pr={{ base: 0, lg: 16 }}
             mb={4}

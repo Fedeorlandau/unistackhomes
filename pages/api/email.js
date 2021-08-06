@@ -21,7 +21,7 @@ export default async function handler(
     const entry = marketingEntries[0];
     const variations = contentstackOptimizeListReader(entry.components[0].unfrm_opt_p13n_list);
     variations.map((variation) => {
-      const { intents } = variation.intentTag;
+      const { intents } = variation.intents;
 
       if (intents) {
         for (const [key] of Object.entries(intents)) {
@@ -38,6 +38,7 @@ export default async function handler(
     }
 
 
+    console.log(data)
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,

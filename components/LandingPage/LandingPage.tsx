@@ -5,10 +5,12 @@ import { PageFields } from '../../lib/contentstack';
 import Banner from '../Banner/Banner';
 import ListingGrid from '../ListingGrid/ListingGrid';
 import PersonalizedHero from '../PersonalizedHero/PersonalizedHero';
+import PersonalizedListingGrid from '../PersonalizedListingGrid/PersonalizedListingGrid';
 
 export const componentMapping: ComponentMapping = {
   banner: Banner,
   listing_grid: ListingGrid,
+  personalized_listings_email: PersonalizedListingGrid,
   personalized_hero: PersonalizedHero,
 };
 

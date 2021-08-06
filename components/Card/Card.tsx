@@ -6,6 +6,8 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
+import { Entry } from '../../lib/contentstack';
+
 const MotionFlex = motion(Flex);
 
 export interface CardProps {
@@ -15,102 +17,94 @@ export interface CardProps {
   price: string;
   reviewCount: number;
   rating: number;
+  image: {
+    url: string;
+  }
+  /** Intent Tags */
+  unfrm_opt_intent_tag?: Record<string, any> | undefined;
 }
 
-const Card = ({
-  title, beds, baths, price, reviewCount, rating,
-}: CardProps) => {
-  const property = {
-    imageUrl: 'https://bit.ly/2Z4KKcF',
-    imageAlt: 'Rear view of modern home with pool',
-    beds: 3,
-    baths: 2,
-    title: 'Modern home in city center in the heart of historic Los Angeles',
-    formattedPrice: '$1,900.00',
-    reviewCount: 34,
-    rating: 4,
-  };
-
-  return (
-    <MotionFlex
-      p={50}
-      w="full"
-      alignItems="center"
-      justifyContent="center"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      position="relative"
+const Card: React.FC<Entry<CardProps>> = ({
+  title, beds, baths, price, reviewCount, rating, image,
+}: CardProps) => (
+  <MotionFlex
+    p={50}
+    w="full"
+    alignItems="center"
+    justifyContent="center"
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+    position="relative"
+  >
+    <Box
+      bg={useColorModeValue('white', 'gray.800')}
+      maxW="xs"
+      rounded="lg"
+      shadow="lg"
     >
-      <Box
-        bg={useColorModeValue('white', 'gray.800')}
-        maxW="xs"
-        rounded="lg"
-        shadow="lg"
-      >
-        <Image
-          src={property.imageUrl}
-          alt={property.imageAlt}
-          roundedTop="lg"
-        />
+      <Image
+        src={image.url}
+        alt={title}
+        roundedTop="lg"
+      />
 
-        <Box p="6">
-          <Box d="flex" alignItems="baseline">
-            <Badge rounded="full" px="2" color="brand.700">
-              New
-            </Badge>
-            <Box
-              color="brand.700"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              fontSize="xs"
-              textTransform="uppercase"
-              ml="2"
-            >
-              {beds}
-              {' '}
-              beds &bull;
-              {baths}
-              {' '}
-              baths
-            </Box>
-          </Box>
-
+      <Box p="6">
+        <Box d="flex" alignItems="baseline">
+          <Badge rounded="full" px="2" color="brand.700">
+            New
+          </Badge>
           <Box
-            mt="1"
+            color="brand.700"
             fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-            isTruncated
+            letterSpacing="wide"
+            fontSize="xs"
+            textTransform="uppercase"
+            ml="2"
           >
-            {title}
+            {beds}
+            {' '}
+            beds &bull;
+            {baths}
+            {' '}
+            baths
           </Box>
+        </Box>
 
-          <Box>
-            {price}
-            <Box as="span" color="gray.600" fontSize="sm">
-              / wk
-            </Box>
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+          {title}
+        </Box>
+
+        <Box>
+          {price}
+          <Box as="span" color="gray.600" fontSize="sm">
+            / wk
           </Box>
+        </Box>
 
-          <Box d="flex" mt="2" alignItems="center">
-            {Array(5)
-              .fill('')
-              .map((_, i) => (
-                <StarIcon
-                  key={title + rating}
-                  color={i < rating ? 'brand.800' : 'gray.300'}
-                />
-              ))}
-            <Box as="span" ml="2" color="gray.600" fontSize="sm">
-              {reviewCount}
-              {' '}
-              reviews
-            </Box>
+        <Box d="flex" mt="2" alignItems="center">
+          {Array(5)
+            .fill('')
+            .map((_, i) => (
+              <StarIcon
+                key={title + rating}
+                color={i < rating ? 'brand.800' : 'gray.300'}
+              />
+            ))}
+          <Box as="span" ml="2" color="gray.600" fontSize="sm">
+            {reviewCount}
+            {' '}
+            reviews
           </Box>
         </Box>
       </Box>
-    </MotionFlex>
-  );
-};
+    </Box>
+  </MotionFlex>
+);
 
 export default Card;

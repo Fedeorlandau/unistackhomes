@@ -9,6 +9,7 @@ import Card, { CardProps } from '../Card/Card';
 interface ListingGridProps {
   listings?: Entry<CardProps>[];
   has_negative_margin?: boolean;
+
 }
 
 const ListingGrid = ({ listings, has_negative_margin }: ListingGridProps) => {

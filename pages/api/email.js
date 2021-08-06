@@ -12,7 +12,7 @@ export default async function handler(
   req,
   res,
 ) {
-  const { intent, email } = req.body;
+  const { intent, email } = JSON.parse(req.body);
 
   const marketingEntries = await getEntriesByContentType(true, 'marketing', ['components', 'components.unfrm_opt_p13n_list']);
 
@@ -33,13 +33,10 @@ export default async function handler(
     });
 
     const data = {
-      ...entry,
-      personalizedComponent
+      personalizedComponent,
+      ...entry
     }
 
-    console.log(data)
-
-    let testAccount = await nodemailer.createTestAccount();
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -57,7 +54,6 @@ export default async function handler(
     const html = Handlebars.compile(fileContents);
     // execute the compiled template and print the output to the console
   
-    console.log(data)
     // send mail with defined transport object
     let info = await transporter.sendMail({
       from: '"Unistack Homes" <foo@example.com>', // sender address

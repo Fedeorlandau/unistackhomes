@@ -11,6 +11,15 @@ import { setCookie } from 'nookies';
 
 import { HeroFields, Entry } from '../../lib/contentstack';
 
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
 const Hero: React.FC<Entry<HeroFields>> = ({
   unfrm_opt_intent_tag,
   title,
@@ -20,24 +29,25 @@ const Hero: React.FC<Entry<HeroFields>> = ({
   is_registered,
 }: HeroFields) => {
   useBehaviorTracking(unfrm_opt_intent_tag);
-  const [value, setValue] = React.useState('tenant');
+  const [intent, setIntent] = React.useState('tenant');
+  const [email, setEmail] = React.useState('');
 
   const { tracker } = useUniformTracker();
-
-  const updateCookie = (intent: string) => {
-    setValue(intent);
-  };
 
   const suscribe = () => {
     setCookie(null, 'unistack_registered', 'true', {
       maxAge: 30 * 24 * 60 * 60,
       path: '/',
     });
-    setCookie(null, 'unistack_role', value, {
+    setCookie(null, 'unistack_role', intent, {
       maxAge: 30 * 24 * 60 * 60,
       path: '/',
     });
-    tracker?.reevaluateSignals();
+    const data = { intent, email };
+    postData('/api/email', data)
+      .then(() => {
+        tracker?.reevaluateSignals();
+      });
   };
 
   return (
@@ -88,7 +98,7 @@ const Hero: React.FC<Entry<HeroFields>> = ({
           && (
           <chakra.div w="full" mb={6}>
 
-            <RadioGroup onChange={updateCookie} value={value} my={4}>
+            <RadioGroup onChange={(value) => setIntent(value)} value={intent} my={4}>
               <Stack direction="row">
                 <Radio value="tenant">Tentant</Radio>
                 <Radio value="landlord">Landlord</Radio>
@@ -96,28 +106,10 @@ const Hero: React.FC<Entry<HeroFields>> = ({
             </RadioGroup>
 
             <VisuallyHidden>Your Email</VisuallyHidden>
-            <Box display={{ base: 'block', lg: 'none' }}>
-              <Input
-                size="lg"
-                color="brand.900"
-                type="email"
-                placeholder="Enter your email..."
-                bg="white"
-              />
-              <Button
-                w="full"
-                mt={2}
-                color="brand.700"
-                variant="solid"
-                size="lg"
-                onClick={() => suscribe()}
-              >
-                {button_text}
-                {' '}
-              </Button>
-            </Box>
+
             <InputGroup size="lg" w="full" display={{ base: 'none', lg: 'flex' }}>
               <Input
+                onChange={(e) => setEmail(e.currentTarget.value)}
                 size="lg"
                 color="brand.900"
                 type="email"

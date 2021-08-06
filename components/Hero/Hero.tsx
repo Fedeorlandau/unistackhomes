@@ -1,12 +1,13 @@
 import React from 'react';
 
 import {
-  SimpleGrid, Flex, Badge, Box,
+  SimpleGrid, Flex, Badge, Box, Stack,
 } from '@chakra-ui/layout';
 import {
-  chakra, useColorModeValue, VisuallyHidden, Input, Button, InputGroup, InputRightElement, Image,
+  chakra, useColorModeValue, VisuallyHidden, Input, Button, InputGroup, InputRightElement, Image, Radio, RadioGroup,
 } from '@chakra-ui/react';
-import { useBehaviorTracking } from '@uniformdev/optimize-tracker-react';
+import { useUniformTracker, useBehaviorTracking } from '@uniformdev/optimize-tracker-react';
+import { setCookie } from 'nookies';
 
 import { HeroFields, Entry } from '../../lib/contentstack';
 
@@ -16,8 +17,28 @@ const Hero: React.FC<Entry<HeroFields>> = ({
   description,
   button_text,
   image,
+  is_registered,
 }: HeroFields) => {
   useBehaviorTracking(unfrm_opt_intent_tag);
+  const [value, setValue] = React.useState('tenant');
+
+  const { tracker } = useUniformTracker();
+
+  const updateCookie = (intent: string) => {
+    setValue(intent);
+  };
+
+  const suscribe = () => {
+    setCookie(null, 'unistack_registered', 'true', {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    });
+    setCookie(null, 'unistack_role', value, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    });
+    tracker?.reevaluateSignals();
+  };
 
   return (
     <>
@@ -63,7 +84,17 @@ const Hero: React.FC<Entry<HeroFields>> = ({
           >
             {title}
           </chakra.h1>
+          {!is_registered
+          && (
           <chakra.div w="full" mb={6}>
+
+            <RadioGroup onChange={updateCookie} value={value} my={4}>
+              <Stack direction="row">
+                <Radio value="tenant">Tentant</Radio>
+                <Radio value="landlord">Landlord</Radio>
+              </Stack>
+            </RadioGroup>
+
             <VisuallyHidden>Your Email</VisuallyHidden>
             <Box display={{ base: 'block', lg: 'none' }}>
               <Input
@@ -79,7 +110,7 @@ const Hero: React.FC<Entry<HeroFields>> = ({
                 color="brand.700"
                 variant="solid"
                 size="lg"
-                onClick={() => console.log('click')}
+                onClick={() => suscribe()}
               >
                 {button_text}
                 {' '}
@@ -100,7 +131,7 @@ const Hero: React.FC<Entry<HeroFields>> = ({
                   size="lg"
                   type="submit"
                   roundedLeft={0}
-                  onClick={() => console.log('click')}
+                  onClick={() => suscribe()}
                 >
                   {button_text}
                   {' '}
@@ -108,6 +139,7 @@ const Hero: React.FC<Entry<HeroFields>> = ({
               </InputRightElement>
             </InputGroup>
           </chakra.div>
+          )}
           <chakra.p
             pr={{ base: 0, lg: 16 }}
             mb={4}
@@ -117,6 +149,7 @@ const Hero: React.FC<Entry<HeroFields>> = ({
           >
             {description}
           </chakra.p>
+
         </Flex>
         <Box>
 

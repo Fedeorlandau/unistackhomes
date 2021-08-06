@@ -47,7 +47,7 @@ export const analytics = Analytics({
 // the Uniform tracker emits log data to the console.
 // You can set how much here. Pass undefined to disable console logging.
 // You can wire up other loggers if you desire regardless of this setting.
-let logLevelThreshold: TrackerLogLevels = 'info';
+let logLevelThreshold: TrackerLogLevels = 'verbose';
 
 // Reduce the tracker logging when exporting SSG content, to avoid polluting build logs.
 // Next export workers/child processes set `__NEXT_DATA__.nextExport = true` when exporting.

@@ -71,7 +71,7 @@ export default function Navbar() {
             </Flex>
             <Flex>
               <HStack spacing="5" display={{ base: 'none', md: 'flex' }}>
-                <NextLink href="/suscribe?role=tenant" passHref>
+                <NextLink href="/suscribe" passHref>
                   <Link
                     bg={bg}
                     as={Button}
@@ -82,21 +82,7 @@ export default function Navbar() {
                     _hover={{ color: cl }}
                     _focus={{ boxShadow: 'none', color: cl }}
                   >
-                    Find your home ❤️
-                  </Link>
-                </NextLink>
-                <NextLink href="/suscribe?role=landlord" passHref>
-                  <Link
-                    bg={bg}
-                    as={Button}
-                    color="gray.500"
-                    display="inline-flex"
-                    alignItems="center"
-                    fontSize="md"
-                    _hover={{ color: cl }}
-                    _focus={{ boxShadow: 'none', color: cl }}
-                  >
-                    Rent your property
+                    Suscribe
                   </Link>
                 </NextLink>
                 <Popover trigger="hover">

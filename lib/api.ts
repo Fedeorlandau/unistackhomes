@@ -32,12 +32,17 @@ export const getClient = (preview?: boolean) => (preview ? previewClient : clien
 export const getEntriesByContentType = async <T extends StandardEntryFields>(
   preview: boolean,
   type: string,
+  includes?: string[],
 ): Promise<Entry<T>[]> => {
   const query = getClient(preview).ContentType(type).Query().includeCount()
     .includeContentType()
     .includeReference()
     .includeEmbeddedItems()
     .toJSON();
+
+  if (includes?.length) {
+    query.includeReference(includes);
+  }
   const result = await query.find();
 
   // result is array where -

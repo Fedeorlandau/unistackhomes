@@ -20,7 +20,7 @@ export default async function handler(
     let personalizedComponent;
     const entry = marketingEntries[0];
     const variations = contentstackOptimizeListReader(entry.components[0].unfrm_opt_p13n_list);
-    variations.map((variation) => {
+    variations.forEach((variation) => {
       const { intents } = variation.unfrm_opt_intent_tag;
 
       if (intents) {

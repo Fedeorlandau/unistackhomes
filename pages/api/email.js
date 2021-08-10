@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
+import path from 'path';
 
 import { contentstackOptimizeListReader } from '@uniformdev/optimize-tracker-contentstack';
 import * as Handlebars from 'handlebars';
@@ -45,7 +46,8 @@ export default async function handler(
       },
     });
 
-    const fileContents = fs.readFileSync('../../emails/marketing.handlebars', 'utf8');
+    const filePath = path.join('components/email', 'marketing.handlebars');
+    const fileContents = fs.readFileSync(filePath, 'utf8');
 
     const html = Handlebars.compile(fileContents);
     // execute the compiled template and print the output to the console

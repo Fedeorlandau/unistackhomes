@@ -1,6 +1,5 @@
 /* eslint-disable no-restricted-syntax */
 import fs from 'fs';
-import path from 'path';
 
 import { contentstackOptimizeListReader } from '@uniformdev/optimize-tracker-contentstack';
 import * as Handlebars from 'handlebars';

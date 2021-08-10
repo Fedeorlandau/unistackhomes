@@ -46,7 +46,7 @@ export default async function handler(
       },
     });
 
-    const filePath = path.join((__dirname, '_emails', 'marketing.handlebars'), 'utf8');
+    const filePath = path.join(__dirname, '_emails', 'marketing.handlebars');
     const fileContents = fs.readFileSync(filePath, 'utf8');
 
     const html = Handlebars.compile(fileContents);

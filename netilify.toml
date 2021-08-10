@@ -16,3 +16,6 @@
 # Stores the next cache between builds for faster build time
 [[plugins]]
   package = "netlify-plugin-cache-nextjs"
+
+[functions]
+  included_files = ["emails/*"]

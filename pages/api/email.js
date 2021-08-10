@@ -45,7 +45,7 @@ export default async function handler(
       },
     });
 
-    const fileContents = fs.readFileSync('../emails/marketing.handlebars', 'utf8');
+    const fileContents = fs.readFileSync('../../emails/marketing.handlebars', 'utf8');
 
     const html = Handlebars.compile(fileContents);
     // execute the compiled template and print the output to the console
